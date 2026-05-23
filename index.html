@@ -133,6 +133,9 @@
     <div class="section-title">STEM.net</div>
     <div class="service-list" id="stemServices"></div>
 
+    <div class="section-title" id="agentsTitle" style="display:none">Org AI Agents</div>
+    <div class="service-list" id="agentServices"></div>
+
     <div class="section-title">Uptime (last 24 hours)</div>
     <div class="uptime-bar" id="uptimeBar"></div>
     <div class="uptime-label">
@@ -148,6 +151,7 @@
   <script>
     const EDIFY_KEYS = ['edify_health', 'edify_referral', 'edify_auth', 'edify_ai', 'edify_signup'];
     const STEM_KEYS = ['stem_health', 'stem_educators', 'stem_programs', 'stem_claim', 'stem_auth'];
+    const KNOWN_KEYS = new Set([...EDIFY_KEYS, ...STEM_KEYS]);
 
     function statusLabel(s) {
       if (s === 'operational') return '<span class="dot operational"></span> Operational';
@@ -215,6 +219,23 @@
         // Services
         renderServices(status.services, EDIFY_KEYS, 'edifyServices');
         renderServices(status.services, STEM_KEYS, 'stemServices');
+
+        // Dynamic agent services (any id not in KNOWN_KEYS)
+        const agentSvcs = status.services.filter(s => !KNOWN_KEYS.has(s.id));
+        if (agentSvcs.length > 0) {
+          document.getElementById('agentsTitle').style.display = '';
+          const container = document.getElementById('agentServices');
+          container.innerHTML = '';
+          for (const svc of agentSvcs) {
+            const div = document.createElement('div');
+            div.className = 'service';
+            div.innerHTML = `
+              <span class="service-name">${svc.name}</span>
+              <span class="service-status ${svc.status}">${statusLabel(svc.status)}</span>
+            `;
+            container.appendChild(div);
+          }
+        }
 
         // Uptime bar
         renderUptime(history);
