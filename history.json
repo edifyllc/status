@@ -2,5 +2,9 @@
   {
     "timestamp": "2026-05-23T01:03:40Z",
     "status": "operational"
+  },
+  {
+    "timestamp": "2026-05-23T01:04:20Z",
+    "status": "degraded"
   }
 ]
