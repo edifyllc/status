@@ -1,1 +1,5 @@
-{"overall":"operational","lastUpdated":"2026-05-22T00:00:00Z","services":[]}
+{
+  "overall": "operational",
+  "lastUpdated": "2026-05-23T01:03:40Z",
+  "services": [{"id":"edify_health","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"edify_referral","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"edify_auth","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"edify_ai","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"edify_signup","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"stem_health","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"stem_educators","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"stem_programs","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"stem_claim","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"},{"id":"stem_auth","name":"Edify Signup Flow","status":"operational","lastCheck":"2026-05-23T01:03:40Z"}]
+}
