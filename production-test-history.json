@@ -2890,5 +2890,246 @@
         "time": "2026-05-24T00:26:51Z"
       }
     ]
+  },
+  {
+    "runType": "production",
+    "timestamp": "2026-05-24T01:26:57Z",
+    "overall": "pass",
+    "passed": 33,
+    "failed": 0,
+    "total": 33,
+    "tests": [
+      {
+        "id": "auth_login_hc",
+        "name": "Auth: Healthcheck Login",
+        "status": "pass",
+        "detail": "Token received",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "auth_login_admin",
+        "name": "Auth: Admin Login",
+        "status": "pass",
+        "detail": "Token received",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "auth_bad_creds",
+        "name": "Auth: Rejects Bad Creds",
+        "status": "pass",
+        "detail": "401",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_landing",
+        "name": "Page: Landing",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_login",
+        "name": "Page: Login",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_signup",
+        "name": "Page: Signup",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_orgs_dir",
+        "name": "Page: Organizations",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_ai_agents",
+        "name": "Page: AI Agents",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_for_orgs",
+        "name": "Page: For Organizations",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_org_profile",
+        "name": "Page: Org Profile (Goalie)",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_instructor",
+        "name": "Page: Instructor Profile",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_instructors",
+        "name": "Page: Experts Listing",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "page_embed",
+        "name": "Page: Embed Chat",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "api_health",
+        "name": "API: Health",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "api_referral",
+        "name": "API: Referral Code",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "embed_active",
+        "name": "Embed: Active Agents",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "embed_config",
+        "name": "Embed: Agent Config",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "embed_messages",
+        "name": "Embed: Messages Remaining",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "org_portal",
+        "name": "Org: Portal Data",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "org_analytics",
+        "name": "Org: Analytics Overview",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "org_credits",
+        "name": "Org: Credits Endpoint",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "org_members",
+        "name": "Org: Members List",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "org_public",
+        "name": "Org: Public Profile API",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "referral_dashboard",
+        "name": "Referral: Dashboard",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "regr_credit_balance",
+        "name": "Regression: credit_balance exists",
+        "status": "pass",
+        "detail": "Shape valid",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "regr_analytics_500",
+        "name": "Regression: Analytics not 500",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "regr_embed_cors",
+        "name": "Regression: Embed allows iframe",
+        "status": "pass",
+        "detail": "Headers present",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "regr_auth_401",
+        "name": "Regression: Auth 401 (not 500)",
+        "status": "pass",
+        "detail": "401",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "stem_health",
+        "name": "STEM: API Health",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "stem_educators",
+        "name": "STEM: Educators",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "stem_programs",
+        "name": "STEM: Programs",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "stem_claim",
+        "name": "STEM: Claim Flow",
+        "status": "pass",
+        "detail": "200",
+        "time": "2026-05-24T01:26:57Z"
+      },
+      {
+        "id": "stem_auth",
+        "name": "STEM: Auth Service",
+        "status": "pass",
+        "detail": "401",
+        "time": "2026-05-24T01:26:57Z"
+      }
+    ]
   }
 ]
