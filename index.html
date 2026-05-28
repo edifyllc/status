@@ -73,11 +73,9 @@
   </div>
 
   <script>
-    const BASE = '';
-
     async function loadStatus() {
       try {
-        const res = await fetch(`${BASE}/status.json`);
+        const res = await fetch('./status.json');
         const data = await res.json();
         renderOverall(data);
         renderServices(data.services);
@@ -88,7 +86,7 @@
 
     async function loadHistory() {
       try {
-        const res = await fetch(`${BASE}/history.json`);
+        const res = await fetch('./history.json');
         const data = await res.json();
         renderHistory(data.slice(-288)); // last 24h at 5-min intervals
       } catch (e) {}
@@ -96,7 +94,7 @@
 
     async function loadTests() {
       try {
-        const res = await fetch(`${BASE}/production-tests.json`);
+        const res = await fetch('./production-tests.json');
         const data = await res.json();
         renderTests(data);
       } catch (e) {
