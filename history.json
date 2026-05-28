@@ -594,5 +594,9 @@
   {
     "timestamp": "2026-05-28T14:09:57Z",
     "status": "operational"
+  },
+  {
+    "timestamp": "2026-05-28T14:15:00Z",
+    "status": "degraded"
   }
 ]
