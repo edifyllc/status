@@ -606,5 +606,9 @@
   {
     "timestamp": "2026-05-28T14:27:37Z",
     "status": "operational"
+  },
+  {
+    "timestamp": "2026-05-28T21:08:04.684Z",
+    "status": "outage"
   }
 ]
