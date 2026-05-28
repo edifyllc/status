@@ -718,5 +718,9 @@
   {
     "timestamp": "2026-05-28T23:25:56.723Z",
     "status": "outage"
+  },
+  {
+    "timestamp": "2026-05-28T23:30:56.721Z",
+    "status": "outage"
   }
 ]
