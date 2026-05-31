@@ -1,0 +1,40 @@
+name: Status Checks
+
+on:
+  schedule:
+    # Every 5 minutes
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run status checks
+        run: node scripts/status-check.mjs
+
+      - name: Sync index.html from standalone page
+        run: cp docs/status-integration/standalone-wired-status.html index.html
+
+      - name: Commit & push results
+        run: |
+          git config user.name  "status-bot"
+          git config user.email "status-bot@edifyllc.github.io"
+          git add status.json history.json production-tests.json production-test-history.json index.html
+          git diff --cached --quiet && echo "No changes" && exit 0
+          OVERALL=$(node -e "const d=JSON.parse(require('fs').readFileSync('status.json','utf8')); console.log(d.overall)")
+          git commit -m "status: $OVERALL @ $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push origin main
