@@ -81,6 +81,7 @@ the public `status` repo).
    where `tree.json` and uploaded media live, surviving deploys.
 4. **Variables**:
    - `DATA_DIR=/data`
+   - `DATABASE_URL` = your Neon connection string (see "Neon" below) — **recommended**
    - `CF_ACCESS_TEAM_DOMAIN` = `yourteam.cloudflareaccess.com`
    - `CF_ACCESS_AUD` = your Access application's Audience (AUD) tag (from step 4)
    - `ALLOWED_EMAILS` (optional) = comma-separated family emails
@@ -105,6 +106,25 @@ the public `status` repo).
 
 Now visiting `family.yourdomain.com` shows the Cloudflare login; after sign-in,
 relatives can view *and* edit/upload, and changes are saved live for everyone.
+
+### Neon (recommended for the family data)
+Storage is pluggable: set **`DATABASE_URL`** and the server stores the tree in
+Neon/Postgres instead of a file — durable, concurrency-safe, and it keeps a
+**full version history** (every save is snapshotted, listed at `/api/history`).
+Photos still live on the Railway volume (binary blobs don't belong in Postgres).
+
+1. In Neon, create a project/database and copy the **connection string**
+   (the pooled `...-pooler...` URL; it already includes `sslmode=require`).
+2. Add it to Railway as `DATABASE_URL`. (Railway's Neon integration can set this
+   for you automatically.)
+3. Redeploy. On first boot the server creates the `tree_doc` and `tree_history`
+   tables and seeds from the sample. The log prints `Tree storage: Neon/Postgres`.
+
+Without `DATABASE_URL`, the server falls back to a `tree.json` file on the volume
+(handy for local dev). Run locally against Neon with:
+```bash
+DATABASE_URL='postgres://…' AUTH_DISABLED=true npm start
+```
 
 ## Alternative: Cloudflare Pages only (no server)
 Static-only hosting. `npm run build`, deploy the folder to Cloudflare Pages, and

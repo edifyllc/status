@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "express": "^4.21.2",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",
     "fuse.js": "^7.4.2",
+    "pg-mem": "^3.0.5",
     "topola": "^3.10.2"
   }
 }

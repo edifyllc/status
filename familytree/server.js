@@ -22,6 +22,7 @@ import { promises as fs } from 'node:fs';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getPool, initSchema, loadTreeDoc, saveTreeDoc, seedIfEmpty, listHistory } from './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const APP_DIR = __dirname;
@@ -30,16 +31,31 @@ const MEDIA_DIR = path.join(DATA_DIR, 'media');
 const TREE_FILE = path.join(DATA_DIR, 'tree.json');
 const PORT = process.env.PORT || 8080;
 const AUTH_DISABLED = process.env.AUTH_DISABLED === 'true';
+const DB_URL = process.env.DATABASE_URL;
+
+// Tree data lives in Neon/Postgres when DATABASE_URL is set, otherwise in a file
+// on the volume. Media files always live on the volume (binary blobs).
+let pool = null;
 
 // --- First-boot seeding ----------------------------------------------------
 
 async function seed() {
   await fs.mkdir(MEDIA_DIR, { recursive: true });
-  if (!existsSync(TREE_FILE)) {
-    const sample = await fs.readFile(path.join(APP_DIR, 'data', 'tree.sample.json'), 'utf8');
-    await fs.writeFile(TREE_FILE, sample);
-    console.log('Seeded tree.json from sample.');
+  const sampleText = await fs.readFile(path.join(APP_DIR, 'data', 'tree.sample.json'), 'utf8');
+
+  if (DB_URL) {
+    pool = getPool(DB_URL);
+    await initSchema(pool);
+    if (await seedIfEmpty(pool, JSON.parse(sampleText))) console.log('Seeded tree from sample (Neon).');
+    console.log('Tree storage: Neon/Postgres.');
+  } else {
+    if (!existsSync(TREE_FILE)) {
+      await fs.writeFile(TREE_FILE, sampleText);
+      console.log('Seeded tree.json from sample (file).');
+    }
+    console.log('Tree storage: file at', TREE_FILE);
   }
+
   // Copy placeholder media so the sample renders before any uploads.
   const repoMedia = path.join(APP_DIR, 'media');
   if (existsSync(repoMedia)) {
@@ -50,6 +66,16 @@ async function seed() {
       }
     }
   }
+}
+
+async function readTree() {
+  if (pool) return (await loadTreeDoc(pool)) || { indis: [], fams: [], media: [] };
+  return JSON.parse(await fs.readFile(TREE_FILE, 'utf8'));
+}
+
+async function writeTree(tree, who) {
+  if (pool) return saveTreeDoc(pool, tree, who);
+  return fs.writeFile(TREE_FILE, JSON.stringify(tree, null, 2));
 }
 
 // --- Cloudflare Access JWT verification (RS256, remote JWKS) ----------------
@@ -126,19 +152,28 @@ app.get('/healthz', (_req, res) => res.json({ ok: true }));
 // Everything else requires a valid Cloudflare Access session.
 app.use(authMiddleware);
 
-// Live data + uploaded media come from the volume.
-app.get('/data/tree.json', (_req, res) => res.sendFile(TREE_FILE));
+// Live data (Neon or file) + uploaded media (volume).
+app.get('/data/tree.json', async (_req, res, next) => {
+  try { res.json(await readTree()); } catch (e) { next(e); }
+});
 app.use('/media', express.static(MEDIA_DIR));
 
 // Save the whole tree.
-app.post('/api/save', async (req, res) => {
+app.post('/api/save', async (req, res, next) => {
   const tree = req.body;
   if (!tree || !Array.isArray(tree.indis) || !Array.isArray(tree.fams)) {
     return res.status(400).json({ error: 'Body must be a tree with indis[] and fams[].' });
   }
-  await fs.writeFile(TREE_FILE, JSON.stringify(tree, null, 2));
-  console.log(`tree.json saved by ${req.userEmail}`);
-  res.json({ ok: true });
+  try {
+    await writeTree(tree, req.userEmail);
+    console.log(`tree saved by ${req.userEmail}`);
+    res.json({ ok: true });
+  } catch (e) { next(e); }
+});
+
+// Version history (Neon only). Returns snapshot metadata, newest first.
+app.get('/api/history', async (_req, res, next) => {
+  try { res.json({ versions: pool ? await listHistory(pool) : [] }); } catch (e) { next(e); }
 });
 
 // Upload a photo/document.
