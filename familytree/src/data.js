@@ -12,13 +12,22 @@ export const state = {
   mediaById: new Map(),
 };
 
-/** Fetch and index a tree.json. Returns the indexed state. */
-export async function loadTree(url = 'data/tree.sample.json') {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
-  const tree = await res.json();
-  setTree(tree);
-  return state;
+/**
+ * Fetch and index the tree. Tries the live data file first (served by the
+ * Railway/Cloudflare backend), then falls back to the bundled sample so the
+ * static viewer works with no backend.
+ */
+export async function loadTree(urls = ['data/tree.json', 'data/tree.sample.json']) {
+  const list = Array.isArray(urls) ? urls : [urls];
+  let lastErr;
+  for (const url of list) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) { setTree(await res.json()); return state; }
+      lastErr = new Error(`${url}: ${res.status}`);
+    } catch (e) { lastErr = e; }
+  }
+  throw new Error(`Failed to load family data (${lastErr?.message || 'unknown error'})`);
 }
 
 /** Index an in-memory tree object (used by loader and by the editor). */

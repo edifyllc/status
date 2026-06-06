@@ -2,11 +2,16 @@
   "name": "familytree",
   "version": "0.1.0",
   "private": true,
-  "description": "Private family-tree static site (Phase 1 scaffold). Sample/fake data only.",
+  "description": "Private family-tree site. Static viewer + optional Node server (Railway) with live editing behind Cloudflare Access.",
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
+    "start": "node server.js",
     "dev": "node build.mjs && npx --yes http-server . -p 8080 -c-1"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",

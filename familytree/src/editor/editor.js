@@ -5,7 +5,7 @@
 import {
   state, setTree, getIndi, getFam, displayName, lifespan,
 } from '../data.js';
-import { saveTree } from './save.js';
+import { saveTree, uploadMedia } from './save.js';
 
 // Working copy so accumulated edits survive view switches without committing.
 let work = null;
@@ -137,7 +137,10 @@ function renderPersonForm(container, id, navigate) {
     <fieldset>
       <legend>Photos &amp; documents</legend>
       <div id="media-list"></div>
-      <button class="btn small" id="add-media">+ Add media</button>
+      <div class="form-row">
+        <label class="inline">Upload <input type="file" id="media-file" accept="image/*,.pdf"></label>
+        <button class="btn small" id="add-media">+ Add by path</button>
+      </div>
     </fieldset>
 
     <p><a class="btn-link" href="#/person/${indi.id}">View profile →</a></p>
@@ -311,16 +314,38 @@ function renderMedia(box, indi) {
     );
   };
   draw();
-  box.querySelector('#add-media').addEventListener('click', () => {
-    const file = prompt('Media file path (e.g. media/grandpa.jpg):');
-    if (!file) return;
-    const caption = prompt('Caption (optional):') || '';
+
+  const addMedia = (file, caption) => {
     const type = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file) ? 'photo' : 'document';
     const mid = nextId('m_', work.media.map((m) => ({ id: m.id })));
-    work.media.push({ id: mid, file, caption, type, people: [indi.id] });
+    work.media.push({ id: mid, file, caption: caption || '', type, people: [indi.id] });
     indi.media.push(mid);
     commitWork();
     draw();
+  };
+
+  // Upload a file when a backend is available; otherwise enter a path manually.
+  const fileInput = box.querySelector('#media-file');
+  fileInput?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const { file: serverPath } = await uploadMedia(file);
+      addMedia(serverPath, prompt('Caption (optional):') || '');
+    } catch (err) {
+      if (err.message === 'forbidden') return alert('Sign in through the family login to upload.');
+      // No backend (static hosting): fall back to a manual path.
+      const p = prompt('No upload server here. Enter a media path you will commit (e.g. media/grandpa.jpg):');
+      if (p) addMedia(p, prompt('Caption (optional):') || '');
+    } finally {
+      e.target.value = '';
+    }
+  });
+
+  box.querySelector('#add-media').addEventListener('click', () => {
+    const file = prompt('Media file path (e.g. media/grandpa.jpg):');
+    if (!file) return;
+    addMedia(file, prompt('Caption (optional):') || '');
   });
 }
 
@@ -371,8 +396,8 @@ async function doSave(container) {
   fb.hidden = false;
   if (ok) {
     fb.className = 'feedback ok';
-    fb.innerHTML = mode === 'api'
-      ? '✓ Saved to the family repository.'
+    fb.innerHTML = mode === 'server'
+      ? '✓ Saved live — your changes are now visible to everyone.'
       : '✓ Your changes downloaded as <code>tree.json</code>. Send it to your family historian to commit, or replace <code>data/tree.json</code> in the repo.';
   } else {
     fb.className = 'feedback error';
