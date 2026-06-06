@@ -1,72 +1,72 @@
 {
-  "overall": "operational",
-  "lastUpdated": "2026-06-06T03:35:35.409Z",
+  "overall": "outage",
+  "lastUpdated": "2026-06-06T03:37:48.653Z",
   "services": [
     {
       "id": "edify_health",
       "name": "Edify API Health",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "edify_referral",
       "name": "Edify Referral System",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "edify_ai",
       "name": "Edify AI Agents",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "edify_booking",
       "name": "Edify Booking Availability",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "stem_health",
       "name": "STEM.net API Health",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "stem_educators",
       "name": "STEM.net Educators",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "database",
       "name": "Database (PostgreSQL)",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "stripe_edify",
       "name": "Stripe (Edify Payments)",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "stripe_stem",
       "name": "Stripe (STEM Payments)",
-      "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "status": "outage",
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "ai_subscriptions",
       "name": "AI Agent Subscriptions",
       "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     },
     {
       "id": "ai_provider",
       "name": "AI Provider (Anthropic)",
-      "status": "operational",
-      "lastCheck": "2026-06-06T03:35:35.409Z"
+      "status": "outage",
+      "lastCheck": "2026-06-06T03:37:48.653Z"
     }
   ]
 }
