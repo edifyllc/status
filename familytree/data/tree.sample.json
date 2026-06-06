@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Ashford Family (Sample)",
+    "note": "FAKE sample data for the scaffold. Replace with your own data in a PRIVATE repo. Do not commit real family data or photos to a public repository."
+  },
+  "indis": [
+    { "id": "I1", "firstName": "William", "lastName": "Ashford", "sex": "M",
+      "birth": { "date": "1851-04-12", "place": "Boston, Massachusetts" },
+      "death": { "date": "1921-09-03", "place": "Boston, Massachusetts" },
+      "fams": ["F1", "F2"], "media": ["m_001"],
+      "notes": "Founder of the family sawmill on the Charles River. Remarried after Eleanor's death. (Sample biography.)",
+      "living": false },
+    { "id": "I2", "firstName": "Eleanor", "lastName": "Pike", "sex": "F",
+      "birth": { "date": "1855-07-30", "place": "Salem, Massachusetts" },
+      "death": { "date": "1899-02-14" },
+      "fams": ["F1"], "living": false },
+    { "id": "I5", "firstName": "Margaret", "lastName": "Stone", "sex": "F",
+      "birth": { "date": "1860", "place": "Concord, Massachusetts" },
+      "death": { "date": "1930-12-01" },
+      "fams": ["F2"], "living": false },
+    { "id": "I3", "firstName": "Thomas", "lastName": "Ashford", "sex": "M",
+      "birth": { "date": "1878-03-22", "place": "Boston, Massachusetts" },
+      "death": { "date": "1955-06-18" },
+      "famc": "F1", "fams": ["F3"], "media": ["m_003"],
+      "events": [{ "type": "residence", "date": "1910", "place": "Cambridge, Massachusetts" }],
+      "living": false },
+    { "id": "I4", "firstName": "Alice", "lastName": "Ashford", "sex": "F",
+      "birth": { "date": "1880-11-05", "place": "Boston, Massachusetts" },
+      "famc": "F1", "living": false },
+    { "id": "I6", "firstName": "Henry", "lastName": "Ashford", "sex": "M",
+      "birth": { "date": "1903-01-09", "place": "Boston, Massachusetts" },
+      "death": { "date": "1980-04-27" },
+      "famc": "F2", "living": false },
+    { "id": "I7", "firstName": "Clara", "lastName": "Bennett", "sex": "F",
+      "birth": { "date": "1882-08-15", "place": "Providence, Rhode Island" },
+      "death": { "date": "1960-10-02" },
+      "fams": ["F3"], "living": false },
+    { "id": "I8", "firstName": "Robert", "lastName": "Ashford", "sex": "M",
+      "birth": { "date": "1907-05-19", "place": "Cambridge, Massachusetts" },
+      "death": { "date": "1988-12-24" },
+      "famc": "F3", "media": ["m_002"],
+      "notes": "Served in the Pacific during WWII; later a schoolteacher. (Sample biography.)",
+      "living": false }
+  ],
+  "fams": [
+    { "id": "F1", "husb": "I1", "wife": "I2", "children": ["I3", "I4"],
+      "marriage": { "date": "1876-06-10", "place": "Boston, Massachusetts" } },
+    { "id": "F2", "husb": "I1", "wife": "I5", "children": ["I6"],
+      "marriage": { "date": "1901-09-20", "place": "Boston, Massachusetts" } },
+    { "id": "F3", "husb": "I3", "wife": "I7", "children": ["I8"],
+      "marriage": { "date": "1905-04-30", "place": "Providence, Rhode Island" } }
+  ],
+  "media": [
+    { "id": "m_001", "file": "media/placeholder-portrait.svg", "caption": "William Ashford, c. 1880", "type": "photo", "people": ["I1"] },
+    { "id": "m_002", "file": "media/placeholder-portrait.svg", "caption": "Robert Ashford in uniform, 1943", "type": "photo", "people": ["I8"] },
+    { "id": "m_003", "file": "media/placeholder-document.svg", "caption": "1910 U.S. Census record", "type": "document", "people": ["I3"] }
+  ]
+}
