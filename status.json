@@ -1,72 +1,54 @@
 {
-  "overall": "outage",
-  "lastUpdated": "2026-06-06T17:32:48.930Z",
+  "overall": "operational",
+  "lastUpdated": "2026-06-06T17:33:57.098Z",
   "services": [
     {
       "id": "edify_health",
       "name": "Edify API Health",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "edify_referral",
       "name": "Edify Referral System",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "edify_ai",
       "name": "Edify AI Agents",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "edify_booking",
       "name": "Edify Booking Availability",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
-    },
-    {
-      "id": "stem_health",
-      "name": "STEM.net API Health",
-      "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
-    },
-    {
-      "id": "stem_educators",
-      "name": "STEM.net Educators",
-      "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "database",
       "name": "Database (PostgreSQL)",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "stripe_edify",
       "name": "Stripe (Edify Payments)",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
-    },
-    {
-      "id": "stripe_stem",
-      "name": "Stripe (STEM Payments)",
-      "status": "outage",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "ai_subscriptions",
       "name": "AI Agent Subscriptions",
       "status": "operational",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     },
     {
       "id": "ai_provider",
       "name": "AI Provider (Anthropic)",
-      "status": "outage",
-      "lastCheck": "2026-06-06T17:32:48.930Z"
+      "status": "operational",
+      "lastCheck": "2026-06-06T17:33:57.098Z"
     }
   ]
 }
