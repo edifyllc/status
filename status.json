@@ -1,54 +1,54 @@
 {
   "overall": "operational",
-  "lastUpdated": "2026-06-06T08:33:56.911Z",
+  "lastUpdated": "2026-06-06T08:34:13.340Z",
   "services": [
     {
       "id": "edify_health",
       "name": "Edify API Health",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "edify_referral",
       "name": "Edify Referral System",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "edify_ai",
       "name": "Edify AI Agents",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "edify_booking",
       "name": "Edify Booking Availability",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "database",
       "name": "Database (PostgreSQL)",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "stripe_edify",
       "name": "Stripe (Edify Payments)",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "ai_subscriptions",
       "name": "AI Agent Subscriptions",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     },
     {
       "id": "ai_provider",
       "name": "AI Provider (Anthropic)",
       "status": "operational",
-      "lastCheck": "2026-06-06T08:33:56.911Z"
+      "lastCheck": "2026-06-06T08:34:13.340Z"
     }
   ]
 }
