@@ -1,9 +1,5 @@
 [
   {
-    "timestamp": "2026-06-10T17:21:54.670Z",
-    "status": "operational"
-  },
-  {
     "timestamp": "2026-06-10T17:22:50.779Z",
     "status": "outage"
   },
@@ -1149,6 +1145,10 @@
   },
   {
     "timestamp": "2026-06-10T22:51:52.470Z",
+    "status": "outage"
+  },
+  {
+    "timestamp": "2026-06-10T22:51:54.774Z",
     "status": "outage"
   }
 ]
