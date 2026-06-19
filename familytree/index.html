@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Tree</title>
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🌳 Family Tree</div>
+    <nav>
+      <a href="#/tree">Tree</a>
+      <a href="#/search">Search</a>
+      <a href="#/timeline">Timeline</a>
+      <a href="#/edit">Edit</a>
+    </nav>
+  </header>
+
+  <main id="view"><p class="muted">Loading…</p></main>
+
+  <footer class="sitefoot">
+    <span>Private family archive · sample data</span>
+  </footer>
+
+  <!-- Topola is bundled to a browser global (run `npm run build`). -->
+  <script src="src/lib/topola.bundle.js"></script>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
