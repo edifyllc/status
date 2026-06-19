@@ -197,8 +197,30 @@ function deriveServices(testResult) {
 
 // ─── main ──────────────────────────────────────────────────────────────────────
 
+// Returns true if anything worth committing changed (statuses or test pass/fail
+// counts). Pure timestamp drift does not count as a change.
+function hasChanged(prevStatus, prevTests, newStatus, newTests) {
+  if (!prevStatus) return true;
+  if (prevStatus.overall !== newStatus.overall) return true;
+  const prevSvcMap = Object.fromEntries((prevStatus.services || []).map(s => [s.id, s.status]));
+  for (const s of newStatus.services) {
+    if (prevSvcMap[s.id] !== s.status) return true;
+  }
+  if (!prevTests) return true;
+  if (prevTests.passed !== newTests.passed || prevTests.failed !== newTests.failed) return true;
+  const prevTestMap = Object.fromEntries((prevTests.tests || []).map(t => [t.id, t.status]));
+  for (const t of newTests.tests) {
+    if (prevTestMap[t.id] !== t.status) return true;
+  }
+  return false;
+}
+
 async function main() {
   console.log(`[${now()}] Running status checks…`);
+
+  // Snapshot previous state before overwriting
+  const prevStatus = readJSON(join(ROOT, 'status.json'), null);
+  const prevTests  = readJSON(join(ROOT, 'production-tests.json'), null);
 
   const testResult = await runTests();
   console.log(`Tests: ${testResult.passed}/${testResult.total} passed`);
@@ -206,7 +228,10 @@ async function main() {
   const statusData = deriveServices(testResult);
   console.log(`Overall: ${statusData.overall}`);
 
-  // Write current status
+  const changed = hasChanged(prevStatus, prevTests, statusData, testResult);
+  console.log(`Changed: ${changed}`);
+
+  // Always write JSON data files (history and test history accumulate every run)
   writeJSON(join(ROOT, 'status.json'), statusData);
   writeJSON(join(ROOT, 'production-tests.json'), testResult);
 
@@ -221,6 +246,9 @@ async function main() {
   testHistory.push(testResult);
   while (testHistory.length > 200) testHistory.shift();
   writeJSON(join(ROOT, 'production-test-history.json'), testHistory);
+
+  // Write marker file so the CI workflow knows whether to commit & push
+  writeFileSync(join(ROOT, '.status-changed'), changed ? '1' : '0');
 
   console.log(`[${now()}] Done.`);
 }

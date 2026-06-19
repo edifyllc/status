@@ -31,10 +31,14 @@ jobs:
 
       - name: Commit & push results
         run: |
+          CHANGED=$(cat .status-changed 2>/dev/null || echo "0")
+          if [ "$CHANGED" != "1" ]; then
+            echo "No status change — skipping commit to save Actions minutes."
+            exit 0
+          fi
           git config user.name  "status-bot"
           git config user.email "status-bot@edifyllc.github.io"
           git add status.json history.json production-tests.json production-test-history.json index.html
-          git diff --cached --quiet && echo "No changes" && exit 0
           OVERALL=$(node -e "const d=JSON.parse(require('fs').readFileSync('status.json','utf8')); console.log(d.overall)")
           git commit -m "status: $OVERALL @ $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push origin main
