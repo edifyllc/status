@@ -1,9 +1,5 @@
 [
   {
-    "timestamp": "2026-06-26T20:21:20.300Z",
-    "status": "degraded"
-  },
-  {
     "timestamp": "2026-06-26T20:21:44.731Z",
     "status": "operational"
   },
@@ -1149,6 +1145,10 @@
   },
   {
     "timestamp": "2026-06-27T04:19:22.292Z",
+    "status": "degraded"
+  },
+  {
+    "timestamp": "2026-06-27T04:21:20.482Z",
     "status": "degraded"
   }
 ]
